@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
 			<body className={inter.className}>
 				<div className="flex flex-col h-screen max-h-screen">
 					<NavBar />
-					<div className="flex-grow overflow-y-auto bg-page text-text">
+					<div className="flex-grow overflow-y-auto bg-page text-text px-20 w-full margin-auto justify-center">
 						{children}
 					</div>
 				</div>

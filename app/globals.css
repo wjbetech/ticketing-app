@@ -34,7 +34,11 @@
 	input,
 	select,
 	textarea {
-		@apply m-2 rounded-sm bg-inherit text-text bg-accent px-1 outline-none;
+		@apply rounded-sm bg-inherit text-text bg-neutral-500 px-2 py-1 outline-none;
+	}
+	.priority-radio input,
+	label {
+		@apply mr-2;
 	}
 }
 
@@ -43,6 +47,6 @@
 		@apply text-text text-xl;
 	}
 	.button {
-		@apply hover:no-underline bg-accent hover:scale-105 shadow-lg shadow-slate-100 font-bold tracking-wider w-full text-center text-text cursor-pointer px-4 py-2 rounded-lg block;
+		@apply hover:no-underline bg-success hover:scale-105 font-bold tracking-wider w-full text-center text-text cursor-pointer px-4 py-2 rounded-lg block transition-all ease-in-out mt-4;
 	}
 }

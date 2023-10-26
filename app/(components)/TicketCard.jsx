@@ -3,29 +3,37 @@ import DeleteBlock from "./deleteBlock";
 import PriorityDisplay from "./PriorityDisplay";
 import ProgressBar from "./ProgressBar";
 import Status from "./Status";
+import Ticket from "@/(models)/ticket";
+import moment from "moment/moment";
 
-const TicketCard = () => {
+const TicketCard = ({ ticket }) => {
 	return (
 		<div className="flex flex-col bg-card rounded-sm shadow-sm shadow-slate-300 p-3 m-2">
 			<div className="flex mb-3 items-baseline justify-between">
-				<PriorityDisplay />
+				<PriorityDisplay
+					priority={ticket.priority}
+				/>
 				<DeleteBlock />
 			</div>
-			<h4>TICKET TITLE</h4>
-			<hr className="h-1 border-0 bg-accent mb-2" />
+			<h4 className="pb-2">{ticket.title}</h4>
+			<hr className="bg-gray-400 mb-2" />
 			<p className="whitespace-pre-wrap">
-				ticket description element
+				{ticket.description}
 			</p>
 			<div className="flex-grow"></div>
-			<div className="flex mt-2">
-				<div className="flex flex-col">
+			<div className="flex mt-2 justify-between">
+				<div className="flex flex-col w-[60%]">
 					<p className="text-xs my-1">
-						[Date/Time]
+						{moment(ticket.createdAt).format(
+							"MMM D YYYY"
+						)}
 					</p>
-					<ProgressBar />
+					<ProgressBar
+						progress={ticket.progress}
+					/>
 				</div>
-				<div className="ml-auto flex items-end">
-					<Status />
+				<div className="flex items-end w-[35%] ml-auto">
+					<Status status={ticket.status} />
 				</div>
 			</div>
 		</div>

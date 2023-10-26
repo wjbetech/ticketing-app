@@ -7,7 +7,7 @@ const DeleteBlock = () => {
 		<div>
 			<FontAwesomeIcon
 				icon={faX}
-				className="bg-danger cursor-pointer text-text"
+				className="bg-inherit cursor-pointer text-text"
 			/>
 		</div>
 	);
