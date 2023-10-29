@@ -27,7 +27,7 @@ const Dashboard = async () => {
 	];
 
 	return (
-		<div className="p-6 justify-center mx-auto">
+		<div className="p-6">
 			<div className="">
 				{tickets &&
 					uniqueCategories?.map(
@@ -39,7 +39,7 @@ const Dashboard = async () => {
 								<h2 className="p-2">
 									{uniqueCategory}
 								</h2>
-								<div className="grid lg:grid-cols-1 xl:grid-cols-3">
+								<div className="grid lg:grid-cols-2 xl:grid-cols-3">
 									{tickets
 										.filter(
 											(ticket) =>

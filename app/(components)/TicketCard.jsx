@@ -3,19 +3,27 @@ import DeleteBlock from "./deleteBlock";
 import PriorityDisplay from "./PriorityDisplay";
 import ProgressBar from "./ProgressBar";
 import Status from "./Status";
-import Ticket from "@/(models)/ticket";
 import moment from "moment/moment";
+import Link from "next/link";
 
 const TicketCard = ({ ticket }) => {
 	return (
-		<div className="flex flex-col bg-card rounded-sm shadow-sm shadow-slate-300 p-3 m-2">
+		<div className="flex flex-col bg-card rounded-sm p-5 m-2">
 			<div className="flex mb-3 items-baseline justify-between">
 				<PriorityDisplay
 					priority={ticket.priority}
 				/>
-				<DeleteBlock />
+				<DeleteBlock id={ticket._id} />
 			</div>
-			<h4 className="pb-2">{ticket.title}</h4>
+			<div className="flex justify-between items-baseline py-4">
+				<h4 className="">{ticket.title}</h4>
+				<Link
+					href={`/TicketPage/${ticket._id}`}
+					className="bg-teal-700 hover:bg-teal-600 px-2 rounded-md"
+				>
+					Edit
+				</Link>
+			</div>
 			<hr className="bg-gray-400 mb-2" />
 			<p className="whitespace-pre-wrap">
 				{ticket.description}
@@ -24,6 +32,7 @@ const TicketCard = ({ ticket }) => {
 			<div className="flex mt-2 justify-between">
 				<div className="flex flex-col w-[60%]">
 					<p className="text-xs my-1">
+						{`Created: `}
 						{moment(ticket.createdAt).format(
 							"MMM D YYYY"
 						)}

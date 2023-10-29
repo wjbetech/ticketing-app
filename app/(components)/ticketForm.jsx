@@ -3,7 +3,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const TicketForm = () => {
+const TicketForm = ({ ticket }) => {
+	const EDITING =
+		ticket._id === "new" ? false : true;
+
 	// router
 	const router = useRouter();
 
@@ -16,6 +19,19 @@ const TicketForm = () => {
 		status: "Unstarted",
 		category: "Hardware Problem",
 	};
+
+	if (EDITING) {
+		startingTicketData["title"] = ticket.title;
+		startingTicketData["description"] =
+			ticket.description;
+		startingTicketData["priority"] =
+			ticket.priority;
+		startingTicketData["progress"] =
+			ticket.progress;
+		startingTicketData["status"] = ticket.status;
+		startingTicketData["category"] =
+			ticket.category;
+	}
 
 	// state handler
 	const [formData, setFormData] = useState(
@@ -51,7 +67,7 @@ const TicketForm = () => {
 
 	// return our component
 	return (
-		<div className="flex justify-center mt-8">
+		<div className="flex justify-center mt-8 w-[75%] mx-auto">
 			<form
 				className="flex flex-col gap-3 w-1/2"
 				method="post"
