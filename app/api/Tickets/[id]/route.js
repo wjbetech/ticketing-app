@@ -13,7 +13,9 @@ export async function GET(req, { params }) {
 
 		return NextResponse.json(
 			{ foundTicket },
-			{ status: 200 }
+			{
+				status: 200,
+			}
 		);
 	} catch (error) {
 		return NextResponse.json(
