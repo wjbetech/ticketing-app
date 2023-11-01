@@ -9,14 +9,9 @@ export async function GET(req, { params }) {
 			_id: id,
 		});
 
-		console.log(foundTicket);
-
-		return NextResponse.json(
-			{ foundTicket },
-			{
-				status: 200,
-			}
-		);
+		return NextResponse.json(foundTicket, {
+			status: 200,
+		});
 	} catch (error) {
 		return NextResponse.json(
 			{
@@ -39,6 +34,31 @@ export async function DELETE(req, { params }) {
 	} catch (error) {
 		return NextResponse.json(
 			{ message: "Error!", error },
+			{ status: 500 }
+		);
+	}
+}
+
+export async function PUT(req, { params }) {
+	try {
+		const { id } = params;
+		const data = await req.json();
+		const ticketData = data.formData;
+
+		const updateTicketData =
+			await Ticket.findByIdAndUpdate(id, {
+				...ticketData,
+			});
+
+		return NextResponse.json(
+			{
+				message: "Ticket successfully updated!",
+			},
+			{ status: 200 }
+		);
+	} catch (error) {
+		return NextResponse.json(
+			{ message: "Could not update ticket" },
 			{ status: 500 }
 		);
 	}

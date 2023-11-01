@@ -47,6 +47,6 @@
 		@apply text-text text-xl;
 	}
 	.button {
-		@apply hover:no-underline bg-success hover:scale-105 font-bold tracking-wider w-full text-center text-text cursor-pointer px-4 py-2 rounded-lg block transition-all ease-in-out mt-4;
+		@apply hover:no-underline bg-success hover:scale-[102%] font-bold tracking-wider w-full text-center text-text cursor-pointer px-4 py-2 rounded-lg block transition-all ease-in-out mt-4;
 	}
 }

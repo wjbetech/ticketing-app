@@ -16,7 +16,7 @@ const NavBar = () => {
 						className="icon"
 					/>
 				</Link>
-				<Link href="/TicketPage/New">
+				<Link href="/TicketPage/new">
 					<FontAwesomeIcon
 						icon={faTicket}
 						className="icon"

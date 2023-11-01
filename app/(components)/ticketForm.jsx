@@ -24,13 +24,13 @@ const TicketForm = ({ ticket }) => {
 		startingTicketData["title"] = ticket.title;
 		startingTicketData["description"] =
 			ticket.description;
+		startingTicketData["category"] =
+			ticket.category;
 		startingTicketData["priority"] =
 			ticket.priority;
 		startingTicketData["progress"] =
 			ticket.progress;
 		startingTicketData["status"] = ticket.status;
-		startingTicketData["category"] =
-			ticket.category;
 	}
 
 	// state handler
@@ -51,16 +51,34 @@ const TicketForm = ({ ticket }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const res = await fetch("/api/Tickets", {
-			method: "POST",
-			body: JSON.stringify({ formData }),
-			"content-type": "application/json",
-		});
-		if (!res.ok) {
-			throw new Error(
-				"Failed to create new ticket"
+
+		if (EDITING) {
+			const res = await fetch(
+				`/api/Tickets/${ticket._id}`,
+				{
+					method: "PUT",
+					body: JSON.stringify({ formData }),
+					"content-type": "application/json",
+				}
 			);
+			if (!res.ok) {
+				throw new Error(
+					"Failed to update ticket"
+				);
+			}
+		} else {
+			const res = await fetch("/api/Tickets", {
+				method: "POST",
+				body: JSON.stringify({ formData }),
+				"content-type": "application/json",
+			});
+			if (!res.ok) {
+				throw new Error(
+					"Failed to create new ticket"
+				);
+			}
 		}
+
 		router.refresh();
 		router.push("/");
 	};
@@ -73,7 +91,11 @@ const TicketForm = ({ ticket }) => {
 				method="post"
 				onSubmit={handleSubmit}
 			>
-				<h3>Create Ticket</h3>
+				<h3>
+					{EDITING
+						? "Update Ticket"
+						: "Create Ticket"}
+				</h3>
 				<label>Title</label>
 				<input
 					id="title"
@@ -185,7 +207,11 @@ const TicketForm = ({ ticket }) => {
 				<input
 					type="submit"
 					className="button"
-					value="Create Ticket"
+					value={
+						EDITING
+							? "UPDATE TICKET"
+							: "SUBMIT TICKET"
+					}
 				/>
 			</form>
 		</div>
